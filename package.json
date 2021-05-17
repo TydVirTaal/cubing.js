@@ -8,6 +8,7 @@
   "license": "GPL-3.0-or-later",
   "repository": "github:cubing/cubing.js",
   "dependencies": {
+    "@swc-node/jest": "^1.2.1",
     "@types/three": "^0.126.1",
     "@types/web-bluetooth": "0.0.4",
     "three": "^0.126.1"
@@ -191,6 +192,14 @@
     ]
   },
   "jest": {
+    "transform": {
+      "^.+\\.(t|j)s$": [
+        "@swc-node/jest",
+        {
+         "dynamicImport": true
+        }
+      ]
+    },
     "roots": [
       "<rootDir>/src"
     ],
