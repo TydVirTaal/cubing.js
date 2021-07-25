@@ -11,7 +11,8 @@
     "@types/three": "^0.126.1",
     "@types/web-bluetooth": "0.0.4",
     "comlink": "^4.3.1",
-    "three": "^0.126.1"
+    "three": "^0.126.1",
+    "wmr": "^3.4.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
