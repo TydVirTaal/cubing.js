@@ -12,7 +12,8 @@
     "@types/web-bluetooth": "0.0.4",
     "acorn-private-methods": "^1.0.0",
     "comlink": "^4.3.1",
-    "three": "^0.126.1"
+    "three": "^0.126.1",
+    "wmr": "^3.4.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
