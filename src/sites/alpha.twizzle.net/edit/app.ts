@@ -12,7 +12,7 @@ import { findOrCreateChild, findOrCreateChildWithClass } from "./dom";
 import { APP_TITLE } from "./strings";
 import { puzzleGroups, supportedPuzzles } from "./supported-puzzles";
 import { getURLParam, setURLParams } from "./url-params";
-import { cube3x3x3KPuzzle } from "../../../cubing/puzzles/implementations/3x3x3/3x3x3.kpuzzle.json_";
+import { cube3x3x3 } from "../../../cubing/puzzles";
 import {
   experimentalSolve2x2x2,
   experimentalSolve3x3x3IgnoringCenters,
@@ -187,7 +187,7 @@ export class App {
         break;
       }
       case "3x3x3": {
-        const kpuzzle = new KPuzzle(cube3x3x3KPuzzle);
+        const kpuzzle = new KPuzzle(await cube3x3x3.def());
         kpuzzle.applyAlg(this.twistyPlayer.alg);
         solution = await experimentalSolve3x3x3IgnoringCenters(kpuzzle.state);
         break;

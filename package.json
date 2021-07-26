@@ -11,12 +11,14 @@
     "@types/three": "^0.126.1",
     "@types/web-bluetooth": "0.0.4",
     "comlink": "^4.3.1",
+    "parcel": "^2.0.0-nightly.776",
     "three": "^0.126.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.13.0",
     "@babylonjs/core": "^5.0.0-alpha.24",
+    "@parcel/transformer-image": "^2.0.0-nightly.2400",
     "@snowpack/plugin-typescript": "^1.2.1",
     "@types/jest": "^26.0.23",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
