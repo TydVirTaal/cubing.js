@@ -4,6 +4,10 @@
 import { Alg } from "../../../../../cubing/alg";
 import { TwistyPlayerV2 } from "../../../../../cubing/twisty";
 import { indexerStrategyNames } from "../../../../../cubing/twisty/model/depth-0/IndexerConstructorRequestProp";
+import type {
+  InputProps,
+  TwistyPropParent,
+} from "../../../../../cubing/twisty/model/TwistyProp";
 import {
   splitFieldName,
   TwistyPropDebugger,
@@ -21,6 +25,7 @@ import {
 } from "../../../../../cubing/twisty/old/dom/TwistyPlayerConfig";
 import { backViewLayouts } from "../../../../../cubing/twisty/old/dom/viewers/TwistyViewerWrapper";
 import { showStats } from "../../../../../cubing/twisty/views/3D/Twisty3DVantage";
+import { experimentalAnimationIterationInstructions } from "../../../../../cubing/twisty/views/ExperimentalAnimationIteration";
 
 // Note: this file needs to contain code to avoid a Snowpack error.
 // So we put a `console.log` here for now.
@@ -28,6 +33,19 @@ console.log("Loading stub file.");
 
 showStats(true);
 
+// const graph: Record<string, string> = {};
+
+const graphNames: Map<
+  TwistyPropParent<any>,
+  { id: string; group: number }
+> = new Map();
+const data: {
+  nodes: { id: string; group: number }[];
+  links: { source: string; target: string; value: string }[];
+} = {
+  nodes: [],
+  links: [],
+};
 function addDebuggers(player: TwistyPlayerV2): void {
   const debuggersWrapper = document.body.appendChild(
     document.createElement("div"),
@@ -38,11 +56,32 @@ function addDebuggers(player: TwistyPlayerV2): void {
   );
   for (const [key, value] of Object.entries(player.model)) {
     if (key.endsWith("Prop")) {
+      const twistyProp = value as TwistyPropParent<any>;
       debuggersGrid.appendChild(
         new TwistyPropDebugger(splitFieldName(key), value),
       );
+      let depth = 0;
+      if ("experimentalParents" in twistyProp) {
+        for (const [edge, parent] of Object.entries(
+          (twistyProp as any).experimentalParents as InputProps<any>,
+        )) {
+          const { id: parentName, group: parentDepth } =
+            graphNames.get(parent)!;
+          console.log(`${key}[${edge}]: ${parentName}`);
+          data.links.push({
+            source: key,
+            target: parentName,
+            value: edge,
+          });
+          depth = Math.max(depth, parentDepth + 1);
+        }
+      }
+      const nodeData = { id: key, group: depth };
+      data.nodes.push(nodeData);
+      graphNames.set(twistyProp, nodeData);
     }
   }
+  console.log(data);
 }
 
 (async () => {
@@ -84,7 +123,7 @@ function addDebuggers(player: TwistyPlayerV2): void {
     input.value = alg.toString();
     input.placeholder = "(none)";
     const update = () => {
-      console.log(propName, input.value);
+      // console.log(propName, input.value);
       (twistyPlayer as any)[propName] = input.value;
     };
     input.addEventListener("change", update);

@@ -1,5 +1,8 @@
 import type { Move } from "../../../../alg";
-import type { PuzzleWrapper, State } from "../../../views/3D/puzzles/KPuzzleWrapper";
+import type {
+  PuzzleWrapper,
+  State,
+} from "../../../views/3D/puzzles/KPuzzleWrapper";
 import type {
   Direction,
   Duration,

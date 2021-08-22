@@ -7,7 +7,11 @@
 
 // start of imports
 import { Alg, Move } from "../../../../alg";
-import { KPuzzle, KPuzzleDefinition, Transformation } from "../../../../kpuzzle";
+import {
+  KPuzzle,
+  KPuzzleDefinition,
+  Transformation,
+} from "../../../../kpuzzle";
 import { KPuzzleWrapper } from "../../../views/3D/puzzles/KPuzzleWrapper";
 import type { AlgIndexer } from "../indexer/AlgIndexer";
 import { TreeAlgIndexer } from "../indexer/tree/TreeAlgIndexer";

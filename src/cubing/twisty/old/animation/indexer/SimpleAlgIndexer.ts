@@ -1,6 +1,9 @@
 import { Alg, Move, TraversalUp } from "../../../../alg";
 import { countAnimatedLeaves } from "../../../../notation";
-import type { PuzzleWrapper, State } from "../../../views/3D/puzzles/KPuzzleWrapper";
+import type {
+  PuzzleWrapper,
+  State,
+} from "../../../views/3D/puzzles/KPuzzleWrapper";
 import type { Duration, Timestamp } from "../cursor/CursorTypes";
 import { AlgDuration, defaultDurationForAmount } from "./AlgDuration";
 import type { AlgIndexer } from "./AlgIndexer";

@@ -191,6 +191,9 @@ export abstract class TwistyPropDerived<
 > extends TwistyPropParent<OutputType> {
   // cachedInputs:
   #parents: InputProps<InputTypes>;
+  get experimentalParents(): InputProps<InputTypes> {
+    return this.#parents;
+  }
 
   #cachedResult: {
     inputs: InputTypes;
